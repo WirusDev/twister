@@ -20,30 +20,43 @@ function handleClick() {
   const randomColor = Math.floor(Math.random() * 4);
   const handTypes = ['leftHand', 'rightHand', 'leftFoot', 'rightFoot'];
   const colors = ['red', 'blue', 'green', 'yellow'];
+  
   setHandType(handTypes[randomNumber]);
   setHandColor(colors[randomColor]);
-  //console.log(handColor);
-
 }
 
   return (
     <>
-         <select value={language} onChange={(event)=>{
-          setLanguage(event.target.value); 
-          console.log(event.target.value);
-          
-        }} title="Language Selector">
-            <option value="">Select...</option>
-            <option value="eng">English</option>
-            <option value="rus">Russian</option>
-            <option value="ger">German</option>
+      <div className="absolute top-10 right-10">
+        <select
+          value={language}
+          onChange={(event) => {
+            if (language === '') {
+              console.log(language);
+              setLanguage("eng");
+            } else {
+              setLanguage(event.target.value);
+            }
+
+
+
+          }}
+          title="Language Selector"
+          className="p-2 text-base rounded-md border-2 border-gray-300 bg-gray-200 text-gray-700 outline-none cursor-pointer"
+        >
+          <option value="eng">🇬🇧 English</option>
+          <option value="rus">🇷🇺 Russian</option>
+          <option value="ger">🇩🇪 German</option>
         </select>
-    <h1 style={{paddingBottom: "50px"}}>{replyInLanguage(language as Language, handType as Limb, handColor as Color)}</h1>
-    <div className='circle' onClick={handleClick}>
-      <Hand handType={handType} handColor={handColor}/>
-    </div>
+      </div>
+      <h1 className="text-5xl font-bold pb-10">
+        {replyInLanguage(language as Language, handType as Limb, handColor as Color)}
+      </h1>
+      <div className="circle" onClick={handleClick}>
+        <Hand handType={handType} handColor={handColor} />
+      </div>
     </>
-  )
+  );
 }
 
 export default App
