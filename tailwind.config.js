@@ -5,5 +5,5 @@ export default {
     extend: {},
   },
   darkMode: "class",
-  plugins: [require("tw-elements-react/dist/plugin.cjs")],
+  plugins: [import("tw-elements-react/dist/plugin.cjs")],
 };
