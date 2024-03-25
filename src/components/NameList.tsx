@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
+import React, { useState, useContext } from "react";
+import NamesContext from "./NamesContext";
 
 function NameList() {
-  const [cookies, setCookie] = useCookies(["names"]);
-  const [names, setNames] = useState(
-    Array.isArray(cookies.names) ? cookies.names : []
-  );
-
   const [currentName, setCurrentName] = useState("");
+  const { names, addName, deleteName } = useContext(NamesContext);
 
   const handleDeleteName = (index: number) => {
-    const newNames = names.filter((name, i) => i !== index);
-    setNames(newNames);
+    deleteName(index);
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,21 +18,16 @@ function NameList() {
       // Don't add if the current name is empty or only contains whitespace
       return;
     }
-    setNames((prevNames) => {
-      const updatedNames = [...prevNames, currentName];
-      setCookie("names", updatedNames, { path: "/" }); // set the cookie to the updated names array
-      return updatedNames;
-    });
-
+    addName(currentName);
     setCurrentName("");
   };
 
   return (
     <div>
       {names.map((name, index) => (
-        <div key={index} className='flex items-center '>
+        <div key={index} className='flex items-center'>
           <div className='flex items-center justify-center text-lg h-[40px] bg-[#565656] w-full my-1 py-1 rounded-md mx-auto mr-2'>
-            <h2 className=''>{name}</h2>
+            <h2>{name}</h2>
           </div>
           <button
             onClick={() => handleDeleteName(index)}
@@ -53,7 +43,7 @@ function NameList() {
           event.preventDefault();
           handleAddName();
         }}
-        className=' items-center '
+        className='items-center'
       >
         <input
           value={currentName}

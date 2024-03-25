@@ -59,11 +59,7 @@ export default function ModalDialogScrollable(): JSX.Element {
             </TEModalHeader>
             {/* <!--Modal body--> */}
             <TEModalBody className='bg-main-grey'>
-                <NameList />
-
- 
-
-      
+              <NameList />
             </TEModalBody>
             <TEModalFooter className='bg-main-grey'>
               <TERipple rippleColor='light'>

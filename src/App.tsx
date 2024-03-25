@@ -5,26 +5,21 @@ import { replyInLanguage, Limb, Language, Color } from "./components/reply";
 import { useCookies } from "react-cookie";
 import Menu from "./components/Menu";
 import { TEAnimation } from "tw-elements-react";
+import NamesContext from "./components/NamesContext";
 
 function App() {
-  const [cookies, setCookie] = useCookies(["language"]);
-
+  const [cookies, setCookie] = useCookies(["language", "names"]);
+  const [names, setNames] = useState(
+    Array.isArray(cookies.names) ? cookies.names : []
+  );
   const [language, setLanguage] = useState(cookies.language || "eng");
   const [handType, setHandType] = useState("leftHand");
   const [handColor, setHandColor] = useState("red");
   const [hexColor, setHexColor] = useState("#FF0000");
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [whoIsNext, setWhoIsNext] = useState(0);
 
-  //Handle Spinner Click
+  // Handle Spinner Click
   function handleClick() {
-    // if (whoIsNext + 1 === names.length || whoIsNext + 1 >= names.length) {
-    //   setWhoIsNext(0);
-    // } else {
-    //   setWhoIsNext(whoIsNext + 1);
-    // }
-
     const randomNumber = Math.floor(Math.random() * 4);
     const randomColor = Math.floor(Math.random() * 4);
     const handTypes = ["leftHand", "rightHand", "leftFoot", "rightFoot"];
@@ -34,10 +29,28 @@ function App() {
     setHandType(handTypes[randomNumber]);
     setHandColor(colors[randomColor]);
     setHexColor(hexColors[randomColor]);
+
+    if (whoIsNext + 1 === names.length || whoIsNext + 1 >= names.length) {
+      setWhoIsNext(0);
+    } else {
+      setWhoIsNext(whoIsNext + 1);
+    }
   }
 
+  const addName = (name: string) => {
+    const newNames = [...names, name];
+    setNames(newNames);
+    setCookie("names", newNames, { path: "/" });
+  };
+
+  const deleteName = (index: number) => {
+    const newNames = names.filter((_, i) => i !== index);
+    setNames(newNames);
+    setCookie("names", newNames, { path: "/" });
+  };
+
   return (
-    <>
+    <NamesContext.Provider value={{ names, addName, deleteName }}>
       <div className='absolute top-10 left-10'>
         <select
           value={language}
@@ -57,7 +70,7 @@ function App() {
       <Menu />
 
       <h1 className='text-5xl font-bold pb-10'>
-        {/* {names[whoIsNext]}{" "} */}
+        {names[whoIsNext]}{" "}
         {replyInLanguage(
           language as Language,
           handType as Limb,
@@ -70,14 +83,11 @@ function App() {
         start='onClick'
         reset
         onClick={handleClick}
-        className='h-[230px] w-[230px] 
-            rounded-full flex items-center 
-            justify-center cursor-pointer 
-            mx-auto bg-main-grey shadow-lg'
+        className='h-[230px] w-[230px] rounded-full flex items-center justify-center cursor-pointer mx-auto bg-main-grey shadow-lg'
       >
         <Hand handType={handType} handColor={hexColor} />
       </TEAnimation>
-    </>
+    </NamesContext.Provider>
   );
 }
 
