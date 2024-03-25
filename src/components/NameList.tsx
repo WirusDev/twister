@@ -1,19 +1,20 @@
-import React, { useState, useContext } from "react";
-import NamesContext from "./NamesContext";
+import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
 function NameList() {
-  //const [names, setNames] = useState(NamesContext);
-  const contextValue = useContext(NamesContext);
-  const { names, setNames } = contextValue;
+  const [cookies, setCookie] = useCookies(["names"]);
+  const [names, setNames] = useState(
+    Array.isArray(cookies.names) ? cookies.names : []
+  );
 
   const [currentName, setCurrentName] = useState("");
 
-  const handleDeleteName = (index) => {
+  const handleDeleteName = (index: number) => {
     const newNames = names.filter((name, i) => i !== index);
     setNames(newNames);
   };
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentName(event.target.value);
   };
 
@@ -22,7 +23,12 @@ function NameList() {
       // Don't add if the current name is empty or only contains whitespace
       return;
     }
-    setNames((prevNames) => [...prevNames, currentName]);
+    setNames((prevNames) => {
+      const updatedNames = [...prevNames, currentName];
+      setCookie("names", updatedNames, { path: "/" }); // set the cookie to the updated names array
+      return updatedNames;
+    });
+
     setCurrentName("");
   };
 

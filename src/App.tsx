@@ -1,33 +1,29 @@
+import React, { useState } from "react";
 import "./App.css";
 import Hand from "./components/Hands";
 import { replyInLanguage, Limb, Language, Color } from "./components/reply";
-import { useState } from "react";
 import { useCookies } from "react-cookie";
 import Menu from "./components/Menu";
-import NamesContext from "./components/NamesContext";
-
 import { TEAnimation } from "tw-elements-react";
 
 function App() {
   const [cookies, setCookie] = useCookies(["language"]);
-  const [names, setNames] = useState([]);
 
   const [language, setLanguage] = useState(cookies.language || "eng");
   const [handType, setHandType] = useState("leftHand");
   const [handColor, setHandColor] = useState("red");
   const [hexColor, setHexColor] = useState("#FF0000");
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [whoIsNext, setWhoIsNext] = useState(0);
 
   //Handle Spinner Click
   function handleClick() {
-    if (whoIsNext + 1 === names.length || whoIsNext + 1 >= names.length) {
-      setWhoIsNext(0);
-    } else {
-      setWhoIsNext(whoIsNext + 1);
-    }
-    console.log(whoIsNext);
-    console.log(names.length);
+    // if (whoIsNext + 1 === names.length || whoIsNext + 1 >= names.length) {
+    //   setWhoIsNext(0);
+    // } else {
+    //   setWhoIsNext(whoIsNext + 1);
+    // }
 
     const randomNumber = Math.floor(Math.random() * 4);
     const randomColor = Math.floor(Math.random() * 4);
@@ -41,7 +37,7 @@ function App() {
   }
 
   return (
-    <NamesContext.Provider value={{ names, setNames }}>
+    <>
       <div className='absolute top-10 left-10'>
         <select
           value={language}
@@ -61,7 +57,7 @@ function App() {
       <Menu />
 
       <h1 className='text-5xl font-bold pb-10'>
-        {names[whoIsNext]}{" "}
+        {/* {names[whoIsNext]}{" "} */}
         {replyInLanguage(
           language as Language,
           handType as Limb,
@@ -81,7 +77,7 @@ function App() {
       >
         <Hand handType={handType} handColor={hexColor} />
       </TEAnimation>
-    </NamesContext.Provider>
+    </>
   );
 }
 
