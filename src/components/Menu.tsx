@@ -1,25 +1,51 @@
-import React, { useState } from 'react';
-import ModalDialogScrollable from './AddPlayers';
+import React, { useState, useRef, useEffect } from "react";
+import ModalDialogScrollable from "./AddPlayers";
+import { Squash as Hamburger } from "hamburger-react";
 function Menu() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-return ( <div className="AppMenu absolute top-10 right-10">
-      <button className='bg-main-grey p-1.5 rounded-md' onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'Close Menu' : 'Open Menu'}
-      </button>
+  // close the menu when the user clicks outside of it
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-      {isOpen && (
-        <div className='bg-main-grey p-1.5 rounded-md'>
-
-          <ul >
-            <li className='py-1'><ModalDialogScrollable /> </li>
-            <li className='py-1'><button className='w-full'>Settings</button></li>
-            <li className='py-1'><button className='w-full'>Info</button> </li>
-          </ul>
+  return (
+    <>
+      <div className='AppMenu fixed top-10 right-10 ' ref={menuRef}>
+        <div className='bg-main-grey mb-1 rounded-md '>
+          <Hamburger toggled={isOpen} size={20} toggle={setIsOpen} />
         </div>
-      )}
-    </div>
-    )
+        {isOpen && (
+          <div className='bg-main-grey p-1.5 rounded-md absolute right-0.5 w-[150px]'>
+            <ul>
+              <li className='py-1 w-full'>
+                <ModalDialogScrollable />{" "}
+              </li>
+              <li className='py-1'>
+                <button className='w-full' onClick={() => setIsOpen(!isOpen)}>
+                  Settings
+                </button>
+              </li>
+              <li className='py-1'>
+                <button className='w-full' onClick={() => setIsOpen(!isOpen)}>
+                  Info
+                </button>{" "}
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default Menu;

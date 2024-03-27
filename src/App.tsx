@@ -1,11 +1,21 @@
+// React and hooks
 import React, { useState } from "react";
-import "./App.css";
-import Hand from "./components/Hands";
-import { replyInLanguage, Limb, Language, Color } from "./components/reply";
+
+// Third-party libraries
 import { useCookies } from "react-cookie";
-import Menu from "./components/Menu";
 import { TEAnimation } from "tw-elements-react";
+
+// Styles
+import "./App.css";
+
+// Components
+import Hand from "./components/Hands";
+import Menu from "./components/Menu";
 import NamesContext from "./components/NamesContext";
+import Footer from "./components/Footer";
+
+// Utilities
+import { replyInLanguage, Limb, Language, Color } from "./components/reply";
 
 function App() {
   const [cookies, setCookie] = useCookies(["language", "names"]);
@@ -22,6 +32,7 @@ function App() {
   function handleClick() {
     const randomNumber = Math.floor(Math.random() * 4);
     const randomColor = Math.floor(Math.random() * 4);
+
     const handTypes = ["leftHand", "rightHand", "leftFoot", "rightFoot"];
     const colors = ["red", "blue", "green", "yellow"];
     const hexColors = ["#FF7373", "#4D94FF", "#33FF33", "#FFFF99"];
@@ -70,7 +81,7 @@ function App() {
       <Menu />
 
       <h1 className='text-5xl font-bold pb-10'>
-        {names[whoIsNext]}{" "}
+        {names[whoIsNext] ? names[whoIsNext] + "," : ""}{" "}
         {replyInLanguage(
           language as Language,
           handType as Limb,
@@ -83,10 +94,12 @@ function App() {
         start='onClick'
         reset
         onClick={handleClick}
-        className='h-[230px] w-[230px] rounded-full flex items-center justify-center cursor-pointer mx-auto bg-main-grey shadow-lg'
+        className={`h-[230px] w-[230px] rounded-full flex items-center justify-center cursor-pointer mx-auto bg-main-grey shadow-lg `}
       >
         <Hand handType={handType} handColor={hexColor} />
       </TEAnimation>
+
+      <Footer />
     </NamesContext.Provider>
   );
 }
