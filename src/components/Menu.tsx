@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import ModalDialogScrollable from "./AddPlayers";
+import Info from "./Info";
 import { Squash as Hamburger } from "hamburger-react";
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,15 +31,9 @@ function Menu() {
               <li className='py-1 w-full'>
                 <ModalDialogScrollable />{" "}
               </li>
+
               <li className='py-1'>
-                <button className='w-full' onClick={() => setIsOpen(!isOpen)}>
-                  Settings
-                </button>
-              </li>
-              <li className='py-1'>
-                <button className='w-full' onClick={() => setIsOpen(!isOpen)}>
-                  Info
-                </button>{" "}
+                <Info />
               </li>
             </ul>
           </div>

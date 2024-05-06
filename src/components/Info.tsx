@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NameList from "./NameList";
+
 import {
   TERipple,
   TEModal,
@@ -10,21 +10,21 @@ import {
   TEModalFooter,
 } from "tw-elements-react";
 
-export default function ModalDialogScrollable(): JSX.Element {
+export default function Info(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
       <TERipple rippleColor='white'>
         <button
-          className='px-6'
+          className='px-8'
           type='button'
           //   className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
           onClick={() => {
             setShowModal(true);
           }}
         >
-          Add Players
+          Info
         </button>
       </TERipple>
 
@@ -34,7 +34,7 @@ export default function ModalDialogScrollable(): JSX.Element {
           <TEModalContent>
             <TEModalHeader className='bg-main-grey border-b-0 mb-0'>
               <h5 className='text-xl font-medium leading-normal text-neutral-200'>
-                Add Players
+                Info
               </h5>
 
               <button
@@ -61,7 +61,10 @@ export default function ModalDialogScrollable(): JSX.Element {
             </TEModalHeader>
 
             <TEModalBody className='bg-main-grey'>
-              <NameList />
+              <p className='text-left'>
+                Hey, <br /> my name is Evgenii and this is my little side
+                Projeckt{" "}
+              </p>
             </TEModalBody>
             <TEModalFooter className='bg-main-grey'>
               <TERipple rippleColor='light'>
@@ -70,7 +73,7 @@ export default function ModalDialogScrollable(): JSX.Element {
                   className='ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
                   onClick={() => setShowModal(false)}
                 >
-                  Save changes
+                  Close
                 </button>
               </TERipple>
             </TEModalFooter>

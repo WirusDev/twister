@@ -5,7 +5,7 @@ export default function Footer() {
     <div className='footer absolute bottom-10 left-1/2 transform -translate-x-1/2 inline-flex'>
       {/* <!-- Instagram --> */}
       <a
-        href='https://www.instagram.com/larinschenja/'
+        href='https://www.instagram.com/schenjalarin/'
         role='button'
         className='px-2'
         title='Instagram'

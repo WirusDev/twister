@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // Third-party libraries
 import { useCookies } from "react-cookie";
-import { TEAnimation } from "tw-elements-react";
+import { motion } from "framer-motion";
 
 // Styles
 import "./App.css";
@@ -13,6 +13,7 @@ import Hand from "./components/Hands";
 import Menu from "./components/Menu";
 import NamesContext from "./components/NamesContext";
 import Footer from "./components/Footer";
+import TextToSpeech from "./components/TextToSpeechTest";
 
 // Utilities
 import { replyInLanguage, Limb, Language, Color } from "./components/reply";
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <NamesContext.Provider value={{ names, addName, deleteName }}>
-      <div className='absolute top-10 left-10'>
+      <div className='fixed top-10 left-10'>
         <select
           value={language}
           onChange={(event) => {
@@ -80,6 +81,8 @@ function App() {
 
       <Menu />
 
+      {/* <NewMenu /> */}
+
       <h1 className='text-5xl font-bold pb-10'>
         {names[whoIsNext] ? names[whoIsNext] + "," : ""}{" "}
         {replyInLanguage(
@@ -89,15 +92,29 @@ function App() {
         )}
       </h1>
 
-      <TEAnimation
-        animation='[drop-in_0.5s]'
-        start='onClick'
-        reset
+      {/* <TextToSpeech
+        text={
+          names[whoIsNext]
+            ? names[whoIsNext] + ","
+            : "" +
+              replyInLanguage(
+                language as Language,
+                handType as Limb,
+                handColor as Color
+              )
+        }
+      /> */}
+
+      <motion.div
+        whileHover={{ scale: [null, 1.4, 1.3] }}
+        transition={{ duration: 0.3 }}
+        whileTap={{ scale: 0.7 }}
         onClick={handleClick}
-        className={`h-[230px] w-[230px] rounded-full flex items-center justify-center cursor-pointer mx-auto bg-main-grey shadow-lg `}
+        className={`h-[230px] w-[230px]  rounded-full flex items-center justify-center cursor-pointer mx-auto bg-main-grey shadow-lg `}
       >
+        {" "}
         <Hand handType={handType} handColor={hexColor} />
-      </TEAnimation>
+      </motion.div>
 
       <Footer />
     </NamesContext.Provider>
