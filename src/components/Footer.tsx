@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className='footer absolute bottom-10 left-1/2 transform -translate-x-1/2 inline-flex'>
+    <div className='footer absolute z-1 bottom-10 left-1/2 transform -translate-x-1/2 inline-flex'>
       {/* <!-- Instagram --> */}
       <a
         href='https://www.instagram.com/schenjalarin/'

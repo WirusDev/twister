@@ -29,10 +29,15 @@ export default function Info(): JSX.Element {
       </TERipple>
 
       {/* <!-- Modal OLD --> */}
-      <TEModal show={showModal} setShow={setShowModal} scrollable>
+      <TEModal
+        className='z-10'
+        show={showModal}
+        setShow={setShowModal}
+        scrollable
+      >
         <TEModalDialog>
           <TEModalContent>
-            <TEModalHeader className='bg-main-grey border-b-0 mb-0'>
+            <TEModalHeader className='bg-main-grey border-b-0 mb-0 '>
               <h5 className='text-xl font-medium leading-normal text-neutral-200'>
                 Info
               </h5>
@@ -62,9 +67,20 @@ export default function Info(): JSX.Element {
 
             <TEModalBody className='bg-main-grey'>
               <p className='text-left'>
-                Hey, <br /> my name is Evgenii and this is my little side
-                Projeckt{" "}
+                Welcome to Twist! <br />
+                <br />
+                Enjoy our multilingual game platform where you can personalize
+                by adding names and have fun playing with friends. <br />
+                <br />
+                Dive in and experience the excitement!
+                <br />
               </p>
+              {/* <hr className='my-6 h-0.5 border-t-0 bg-[#2e9dff] opacity-100 dark:opacity-50' />
+              ♥️ If you'd like to support us ♥️
+              <br />
+              <button className='btn btn-primary' title='donation'>
+                <a href='#'>Donate</a>
+              </button> */}
             </TEModalBody>
             <TEModalFooter className='bg-main-grey'>
               <TERipple rippleColor='light'>

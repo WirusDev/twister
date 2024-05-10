@@ -13,7 +13,7 @@ import Hand from "./components/Hands";
 import Menu from "./components/Menu";
 import NamesContext from "./components/NamesContext";
 import Footer from "./components/Footer";
-// import TextToSpeech from "./components/TextToSpeechTest";
+//import TextToSpeech from "./components/TextToSpeechTest";
 
 // Utilities
 import { replyInLanguage, Limb, Language, Color } from "./components/reply";
@@ -91,8 +91,8 @@ function App() {
           handColor as Color
         )}
       </h1>
-
-      {/* <TextToSpeech
+      {/* 
+      <TextToSpeech
         text={
           names[whoIsNext]
             ? names[whoIsNext] + ","

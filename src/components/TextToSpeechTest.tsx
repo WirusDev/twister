@@ -2,24 +2,35 @@
 
 // const TextToSpeech = ({ text }: { text: string }) => {
 //   const [isPaused, setIsPaused] = useState(false);
-//   const [utterance, setUtterance] = useState(null);
-//   const [voice, setVoice] = useState(null);
+//   const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(
+//     null
+//   );
+//   const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
 //   const [pitch, setPitch] = useState(1);
 //   const [rate, setRate] = useState(1);
 //   const [volume, setVolume] = useState(1);
+//   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+
+//   // Function to refresh voices
+//   const refreshVoices = () => {
+//     setVoices(window.speechSynthesis.getVoices());
+//   };
 
 //   useEffect(() => {
 //     const synth = window.speechSynthesis;
 //     const u = new SpeechSynthesisUtterance(text);
-//     const voices = synth.getVoices();
 
+//     refreshVoices(); // Refresh the list of voices
+//     window.speechSynthesis.onvoiceschanged = refreshVoices;
+
+//     u.voice = voices[0] || null;
 //     setUtterance(u);
-//     setVoice(voices[0]);
 
 //     return () => {
 //       synth.cancel();
+//       window.speechSynthesis.onvoiceschanged = null; // Remove the event listener
 //     };
-//   }, [text]);
+//   }, [text, voices]);
 
 //   const handlePlay = () => {
 //     const synth = window.speechSynthesis;
@@ -56,7 +67,6 @@
 //   };
 
 //   const handleVoiceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//     const voices = window.speechSynthesis.getVoices();
 //     setVoice(voices.find((v) => v.name === event.target.value) || null);
 //   };
 
@@ -64,11 +74,11 @@
 //     setPitch(parseFloat(event.target.value));
 //   };
 
-//   const handleRateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//   const handleRateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 //     setRate(parseFloat(event.target.value));
 //   };
 
-//   const handleVolumeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 //     setVolume(parseFloat(event.target.value));
 //   };
 
@@ -76,10 +86,10 @@
 //     <div>
 //       <label>
 //         Voice:
-//         <select value={voice?.name} onChange={handleVoiceChange}>
-//           {window.speechSynthesis.getVoices().map((voice) => (
-//             <option key={voice.name} value={voice.name}>
-//               {voice.name}
+//         <select value={voice?.name || ""} onChange={handleVoiceChange}>
+//           {voices.map((v) => (
+//             <option key={v.name} value={v.name}>
+//               {v.name}
 //             </option>
 //           ))}
 //         </select>
