@@ -8,6 +8,6 @@ export default {
       },
     },
   },
-  darkMode: "class",
+  // darkMode: "class",
   plugins: [import("tw-elements-react/dist/plugin.cjs")],
 };
