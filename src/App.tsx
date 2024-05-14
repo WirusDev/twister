@@ -1,5 +1,5 @@
 // React and hooks
-import React, { useState } from "react";
+import React from "react";
 
 // Third-party libraries
 import { useCookies } from "react-cookie";
@@ -20,14 +20,14 @@ import { replyInLanguage, Limb, Language, Color } from "./components/reply";
 
 function App() {
   const [cookies, setCookie] = useCookies(["language", "names"]);
-  const [names, setNames] = useState(
+  const [names, setNames] = React.useState(
     Array.isArray(cookies.names) ? cookies.names : []
   );
-  const [language, setLanguage] = useState(cookies.language || "eng");
-  const [handType, setHandType] = useState("leftHand");
-  const [handColor, setHandColor] = useState("red");
-  const [hexColor, setHexColor] = useState("#FF0000");
-  const [whoIsNext, setWhoIsNext] = useState(0);
+  const [language, setLanguage] = React.useState(cookies.language || "eng");
+  const [handType, setHandType] = React.useState("leftHand");
+  const [handColor, setHandColor] = React.useState("red");
+  const [hexColor, setHexColor] = React.useState("#FF0000");
+  const [whoIsNext, setWhoIsNext] = React.useState(0);
 
   // Handle Spinner Click
   function handleClick() {

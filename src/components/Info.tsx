@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import KoFiButton from "./KoFiButton";
+
 import {
   TERipple,
   TEModal,
@@ -75,12 +77,7 @@ export default function Info(): JSX.Element {
                 Dive in and experience the excitement!
                 <br />
               </p>
-              {/* <hr className='my-6 h-0.5 border-t-0 bg-[#2e9dff] opacity-100 dark:opacity-50' />
-              ♥️ If you'd like to support us ♥️
-              <br />
-              <button className='btn btn-primary' title='donation'>
-                <a href='#'>Donate</a>
-              </button> */}
+              <KoFiButton />
             </TEModalBody>
             <TEModalFooter className='bg-main-grey'>
               <TERipple rippleColor='light'>
