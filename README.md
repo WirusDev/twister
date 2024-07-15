@@ -28,4 +28,4 @@ Twister ist eine minimale React-Anwendungsvorlage, die mit TypeScript und Vite e
 [GitHub - WirusDev/twister](https://github.com/WirusDev/twister)
 
 ## Live-Demo:
-[twist-two.vercel.app]([https://twist-two.vercel.app/])
+[twist-two.vercel.app](https://twist-two.vercel.app/)
