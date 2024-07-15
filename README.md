@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Twister
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Projektbeschreibung:
+Twister ist eine minimale React-Anwendungsvorlage, die mit TypeScript und Vite eingerichtet ist. Sie ist für effiziente Entwicklung mit Hot Module Replacement (HMR) konzipiert und enthält wichtige ESLint-Regeln für die Codequalität. Die Anwendung unterstützt mehrere Sprachen (Englisch, Deutsch und Russisch) und ermöglicht das Hinzufügen und Löschen von Spielern. Alle Daten werden in Cookies gespeichert, sodass sie bei einem Neustart erhalten bleiben. Außerdem gibt es eine Informationsseite über das Projekt.
 
-Currently, two official plugins are available:
+## Technologien:
+- **React:** Bibliothek zur Erstellung von Benutzeroberflächen.
+- **TypeScript:** Statische Typisierung für JavaScript.
+- **Vite:** Entwicklungs- und Build-Tool mit schneller Neuladefunktion.
+- **Tailwind CSS:** Utility-First CSS-Framework für benutzerdefinierte Designs.
+- **ESLint:** Tool zur statischen Codeanalyse und Qualitätskontrolle.
+- **PostCSS:** Tool zur Verarbeitung von CSS mit Plugins.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features:
+- Schnelle Aktualisierung mit Vite's HMR.
+- TypeScript-Unterstützung für Typsicherheit.
+- ESLint-Konfiguration für TypeScript und React.
+- Unterstützung mehrerer Sprachen (Englisch, Deutsch, Russisch).
+- Hinzufügen und Löschen von Spielern, Daten bleiben in Cookies gespeichert.
+- Informationsseite über das Projekt.
 
-## Expanding the ESLint configuration
+## Projektstruktur:
+- **Öffentliche Ordner:** `index.html`, Haupt-HTML-Datei der Anwendung.
+- **Source Code (`src`):** Komponenten, Stile und TypeScript-Dateien.
+- **Konfigurationsdateien:** `vite.config.ts`, `tsconfig.json`, `tailwind.config.js`, `.eslintrc.cjs`.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## GitHub-Repository:
+[GitHub - WirusDev/twister](https://github.com/WirusDev/twister)
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Live-Demo:
+[twist-two.vercel.app]([https://twist-two.vercel.app/])
